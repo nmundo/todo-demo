@@ -10,8 +10,16 @@ import {
   Divider,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Todo } from "./App";
 
-const TodosList = ({
+interface TodosListProps {
+  todos: Todo[];
+  deleteTodo: (id: string) => void;
+  toggleTodo: (id: string) => void;
+  completedType?: boolean;
+}
+
+const TodosList: React.FC<TodosListProps> = ({
   todos,
   deleteTodo,
   toggleTodo,
@@ -19,7 +27,7 @@ const TodosList = ({
 }) => (
   <List>
     {todos.filter(({ completed }) => completed).length === 0 && (
-      <ListItem>Get something done!</ListItem>
+      <ListItem>Add some tasks!</ListItem>
     )}
     {todos
       .filter(({ completed }) => completedType === completed)
