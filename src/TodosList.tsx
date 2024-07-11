@@ -10,8 +10,16 @@ import {
   Divider,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Todo } from "./App";
 
-const TodosList = ({
+type TodoListProps = {
+  todos: Todo[];
+  deleteTodo: Function;
+  toggleTodo: Function;
+  completedType?: boolean;
+};
+
+const TodosList: React.FC<TodoListProps> = ({
   todos,
   deleteTodo,
   toggleTodo,

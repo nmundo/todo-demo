@@ -10,9 +10,21 @@ import {
 } from "@mui/material";
 import TodosList from "./TodosList";
 
+export type Todo = {
+  id: string;
+  text: string;
+  completed: boolean;
+};
+
+const list = document.getElementById("tnahuoesnu");
+
+if (list !== null) list.removeChild(document.createElement("li"));
+
+list?.removeChild(document.createElement("li"));
+
 function App() {
   const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem("todos")) || []
+    JSON.parse(localStorage.getItem("todos") || "[]") as Todo[]
   );
   const [todo, setTodo] = useState("");
 
@@ -21,7 +33,7 @@ function App() {
   }, [todos]);
 
   const addTodo = () => {
-    const newTodo = {
+    const newTodo: Todo = {
       id: crypto.randomUUID(),
       text: todo,
       completed: false,
@@ -30,14 +42,14 @@ function App() {
     setTodo("");
   };
 
-  const toggleTodo = (id) => {
+  const toggleTodo = (id: string) => {
     const newTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
     setTodos(newTodos);
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (id: string) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
