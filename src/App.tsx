@@ -16,12 +16,6 @@ export type Todo = {
   completed: boolean;
 };
 
-const list = document.getElementById("tnahuoesnu");
-
-if (list !== null) list.removeChild(document.createElement("li"));
-
-list?.removeChild(document.createElement("li"));
-
 function App() {
   const [todos, setTodos] = useState(
     JSON.parse(localStorage.getItem("todos") || "[]") as Todo[]
